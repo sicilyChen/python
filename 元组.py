@@ -1,0 +1,9 @@
+#不可变序列-元组，字符串
+#1.直接创建
+t=('python','hello',90)
+print(t,type(t))
+#2.内置函数tuple()
+t2=('python','hello',90)
+print(t2,type(t2))
+t3=(100,)
+print(t3)
