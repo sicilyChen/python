@@ -114,11 +114,6 @@ def delete():
                 continue
             else:
                 break
-
-
-
-
-    pass
 def modify():
     pass
 def sort(): 
