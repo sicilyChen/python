@@ -217,7 +217,7 @@ def show():
     if os.path.exists(filename):
         pass
     else:
-        print('暂未保存过数据！！！dde')
+        print('暂未保存过数据！！！')
 
 if __name__=='__main__':
     main()
