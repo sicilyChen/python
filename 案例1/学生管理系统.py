@@ -77,8 +77,6 @@ def save(lst):
     for item in lst:
         stu_txt.write(str(item)+'\n')
     stu_txt.close()
-
-
 def search():
     student_query=[]
     while True:
@@ -134,10 +132,6 @@ def show_student(lst):
                                 int(item.get('english'))+int(item.get('python'))+int(item.get('java'))
                                 ))
 
-
-
-
-    
 #删除学生信息功能
 def delete():
     while True:
@@ -211,11 +205,15 @@ def total():
             print(f'一共有{len(students)}名学生')
         else:
             print('还没有录入学生信息')
-
 def show():
     student_lst=[]
     if os.path.exists(filename):
-        pass
+        with open(filename,'r',encoding='utf-8') as rfile: 
+            students=rfile.readlines()
+            for item in students: 
+               student_lst.append(eval(item))
+            if student_lst:
+                show_student(student_lst)
     else:
         print('暂未保存过数据！！！')
 
