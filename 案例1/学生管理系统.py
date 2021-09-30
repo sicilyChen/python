@@ -1,5 +1,5 @@
 import os
-filename='案例1\\student.txt'
+filename='student.txt'
 def main():
     while True: 
         menum()
@@ -119,7 +119,7 @@ def show_student(lst):
         print('没有查询到学生信息，无数据显示！！！')
         return
     #定义标题显示格式
-    format_title='{:^6}\t{:^10}\t{:^8}\t{:^8}\t{:^8}\t{:^8}\t'
+    format_title='{:^6}\t{:^10}\t{:^8}\t{:^8}\t{:^8}\t{:^8}'
     print(format_title.format('ID','姓名','英语成绩','python成绩','java成绩','总成绩'))
     #定义内容显示格式
     format_data='{:^6}\t{:^10}\t{:^12}\t{:^10}\t{:^10}\t{:^12}'
@@ -196,7 +196,39 @@ def modify():
         if answer=='y':
             modify()
 def sort(): 
-    pass
+    show()
+    if os.path.exists(filename):
+        with open(filename,'r',encoding='utf-8',) as rfile: 
+            student_lst=rfile.readlines()
+        student_new=[]
+        for item in student_lst: 
+            d=dict(eval(item))
+            student_new.append(d)
+    else: 
+        return
+    asc_or_desc=input('请选择（0.升序 1.降序')
+    if asc_or_desc=='0': 
+        asc_or_desc_bool=False
+    elif asc_or_desc=='1': 
+        asc_or_desc_bool=True
+    else: 
+        print('您的输入有误请重新输入')
+        sort()
+    mode=input('请输入排序方式（1.按英语成绩排序 2.按python成绩排序 3.按java成绩排序 4.按总成绩排序')
+    if mode=='1' :
+        student_new.sort(key=lambda x:int(x['english']),reverse=asc_or_desc_bool)
+    elif mode=='2':
+        student_new.sort(key=lambda x:int(x['python']),reverse=asc_or_desc_bool)
+    elif mode=='3': 
+        student_new.sort(key=lambda x:int(x['java']),reserve=asc_or_desc_bool)
+    elif mode=='4': 
+        student_new.sort(key=lambda x:int(x['enlish'])+int(x['python'])+int(x['java']),reserve=asc_or_desc_bool)
+    else: 
+        print('您的输入有误请重新输入')
+        sort()
+    show_student(student_new)
+
+
 def total(): 
     if os.path.exists(filename): 
         with open(filename,'r',encoding='utf-8') as rfile:
